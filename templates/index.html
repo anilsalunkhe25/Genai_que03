@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Powered Synthetic Dataset Generator</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-hover: #1d4ed8;
+            --success: #15803d;
+            --danger: #dc2626;
+            --warning: #d97706;
+            --bg: #f8fafc;
+            --card: #ffffff;
+            --text: #1e293b;
+            --muted: #64748b;
+            --border: #e2e8f0;
+        }
+        * { box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 0;
+            line-height: 1.5;
+        }
+        .container { max-width: 1100px; margin: 0 auto; padding: 24px; }
+        header {
+            background: var(--card);
+            border-bottom: 1px solid var(--border);
+            padding: 20px 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+        }
+        header h1 { margin: 0; font-size: 1.5rem; display: flex; align-items: center; gap: 10px; }
+        header p { margin: 4px 0 0; color: var(--muted); font-size: 0.95rem; }
+        .badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 0.75rem;
+            background: #eff6ff;
+            color: var(--primary);
+            margin-left: 8px;
+        }
+        .grid { display: grid; grid-template-columns: 1fr; gap: 24px; }
+        @media (min-width: 768px) { .grid { grid-template-columns: 280px 1fr; } }
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+        }
+        .card h2 { margin-top: 0; font-size: 1.1rem; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+        .form-group { margin-bottom: 14px; }
+        .form-group label { display: block; font-size: 0.9rem; margin-bottom: 6px; font-weight: 600; }
+        .form-group input[type="number"] {
+            width: 100%; padding: 8px 10px; border: 1px solid var(--border);
+            border-radius: 6px; font-size: 0.95rem;
+        }
+        .btn {
+            display: inline-flex; align-items: center; justify-content: center;
+            gap: 6px; padding: 10px 16px; font-size: 0.95rem; font-weight: 600;
+            border: none; border-radius: 6px; cursor: pointer; text-decoration: none;
+            transition: background 0.2s;
+        }
+        .btn-primary { background: var(--primary); color: #fff; }
+        .btn-primary:hover { background: var(--primary-hover); }
+        .btn-success { background: var(--success); color: #fff; }
+        .btn-success:hover { background: #14532d; }
+        .btn-danger { background: var(--danger); color: #fff; }
+        .btn-danger:hover { background: #b91c1c; }
+        .btn-outline {
+            background: transparent; color: var(--primary);
+            border: 1px solid var(--primary);
+        }
+        .btn-outline:hover { background: #eff6ff; }
+        .btn:disabled { opacity: 0.55; cursor: not-allowed; }
+        .btn-group { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
+        table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+        th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--border); }
+        th { background: #f1f5f9; font-weight: 600; color: var(--muted); position: sticky; top: 0; z-index: 1; }
+        tr:nth-child(even) td { background: #fcfdfe; }
+        tr:hover td { background: #f1f5f9; }
+        .empty { color: var(--muted); padding: 30px; text-align: center; }
+        .section-title { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); margin-bottom: 10px; font-weight: 700; }
+        .report { background: #f8fafc; border: 1px solid var(--border); border-radius: 8px; padding: 16px; margin-top: 16px; }
+        .report h3 { margin-top: 0; font-size: 1rem; margin-bottom: 12px; }
+        .report-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin-bottom: 14px; }
+        .stat { background: #fff; border: 1px solid var(--border); border-radius: 6px; padding: 10px 12px; }
+        .stat .label { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; }
+        .stat .value { font-size: 1.25rem; font-weight: 700; margin-top: 4px; }
+        .stat.pass .value { color: var(--success); }
+        .stat.fail .value { color: var(--danger); }
+        .status-badge {
+            display: inline-block; padding: 2px 10px; border-radius: 12px; font-size: 0.78rem; font-weight: 700;
+        }
+        .status-pass { background: #dcfce7; color: #166534; }
+        .status-fail { background: #fee2e2; color: #991b1b; }
+        ul.issues { margin: 0; padding-left: 18px; color: var(--danger); font-size: 0.85rem; }
+        ul.issues li { margin-bottom: 4px; }
+        .hint { font-size: 0.85rem; color: var(--muted); margin-top: 6px; }
+        .env-chip {
+            font-size: 0.75rem; padding: 2px 8px; border-radius: 8px; background: var(--border); color: var(--muted);
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1>AI-Powered Synthetic Dataset Generator <span class="badge">Flask</span></h1>
+        <p>Domain: <strong>{{ domain }}</strong> &nbsp;|&nbsp; Records generated: <strong>{{ num_records }}</strong></p>
+    </header>
+
+    <div class="grid">
+        <!-- Controls -->
+        <div class="card">
+            <div class="section-title">Generate Dataset</div>
+            <form method="POST" action="{{ url_for('generate') }}">
+                <div class="form-group">
+                    <label for="num_records">Number of records</label>
+                    <input type="number" id="num_records" name="num_records" min="1" value="35">
+                </div>
+                <button type="submit" class="btn btn-primary">Generate Records</button>
+            </form>
+
+            <div class="btn-group" style="margin-top:16px;">
+                {% if num_records > 0 %}
+                    <a href="{{ url_for('download_csv') }}" class="btn btn-success">Download CSV</a>
+                    <a href="{{ url_for('download_json') }}" class="btn btn-success">Download JSON</a>
+                {% endif %}
+                <form method="POST" action="{{ url_for('clear') }}" style="margin:0;">
+                    <button type="submit" class="btn btn-danger">Clear Dataset</button>
+                </form>
+            </div>
+
+            <div class="hint" style="margin-top:16px;">
+                Schema: order_id (ORD-XXXXX), customer_name, product_category, order_amount ($10–$1500), order_date (YYYY-MM-DD), payment_status
+            </div>
+            <div class="hint">
+                <span class="env-chip">faker: {{ 'yes' if faker_available else 'no' }}</span>
+                <span class="env-chip">pandas: {{ 'yes' if pandas_available else 'no' }}</span>
+            </div>
+        </div>
+
+        <!-- Preview + Validation -->
+        <div class="card">
+            <div class="section-title">Dataset Preview</div>
+            {% if num_records > 0 %}
+                <div style="overflow:auto; max-height: 520px;">
+                    <table>
+                        <thead>
+                            <tr>
+                                {% for field in field_order %}
+                                    <th>{{ field }}</th>
+                                {% endfor %}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for record in records %}
+                                <tr>
+                                    {% for field in field_order %}
+                                        <td>{{ record[field] }}</td>
+                                    {% endfor %}
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            {% else %}
+                <div class="empty">No dataset generated yet. Click "Generate Records" to create synthetic orders.</div>
+            {% endif %}
+
+            {% if validation_report %}
+                <div class="report">
+                    <h3>Live Validation Report</h3>
+                    <div class="report-grid">
+                        {% for field in validation_report.fields %}
+                        <div class="stat {% if validation_report.missing_values[field] == 0 %}pass{% else %}fail{% endif %}">
+                            <span class="label">{{ field }} missing</span>
+                            <span class="value">{{ validation_report.missing_values[field] }}</span>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <div class="report-grid" style="margin-top:8px;">
+                        <div class="stat {% if validation_report.duplicates.duplicate_count == 0 %}pass{% else %}fail{% endif %}">
+                            <span class="label">Duplicate order_ids</span>
+                            <span class="value">{{ validation_report.duplicates.duplicate_count }}</span>
+                        </div>
+                        <div class="stat {% if validation_report.schema_consistency.total_issues == 0 %}pass{% else %}fail{% endif %}">
+                            <span class="label">Schema issues</span>
+                            <span class="value">{{ validation_report.schema_consistency.total_issues }}</span>
+                        </div>
+                        <div class="stat {% if validation_report.overall_pass %}pass{% else %}fail{% endif %}">
+                            <span class="label">Overall</span>
+                            <span class="value">{{ 'PASSED' if validation_report.overall_pass else 'FAILED' }}</span>
+                        </div>
+                    </div>
+                    <div style="margin-top:12px;">
+                        <span class="status-badge {{ 'status-pass' if validation_report.overall_pass else 'status-fail' }}">
+                            {{ 'Validation PASSED' if validation_report.overall_pass else 'Validation FAILED' }}
+                        </span>
+                    </div>
+                    {% if validation_report.schema_consistency.issues %}
+                        <div style="margin-top:12px;">
+                            <div class="section-title">Issues</div>
+                            <ul class="issues">
+                                {% for issue in validation_report.schema_consistency.issues %}
+                                    <li>{{ issue }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    {% endif %}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,36 @@
+order_id,customer_name,product_category,order_amount,order_date,payment_status
+ORD-04332,Tiffany Thompson,Electronics,962.75,2024-12-12,Completed
+ORD-00133,Katherine Ballard,Beauty,889.83,2024-11-04,Completed
+ORD-86379,Rodney Thomas,Home & Kitchen,846.26,2024-01-04,Pending
+ORD-54235,Samantha Lozano,Electronics,1050.23,2024-02-17,Failed
+ORD-59407,Joel Williams,Beauty,154.11,2024-03-04,Failed
+ORD-49593,Derrick Berg,Electronics,127.41,2024-01-24,Pending
+ORD-13164,Joseph Mason,Books,1161.87,2024-11-21,Refunded
+ORD-53419,Victoria Eaton,Clothing,252.35,2024-09-30,Pending
+ORD-64835,Sarah Good,Electronics,253.47,2024-04-27,Completed
+ORD-64139,Robert Scott,Home & Kitchen,1209.52,2024-04-18,Failed
+ORD-72423,Danielle Johnson,Beauty,599.49,2024-10-02,Refunded
+ORD-69653,Kim Jones,Clothing,1123.05,2024-09-17,Failed
+ORD-01226,Jade Guerrero,Beauty,145.46,2024-02-02,Failed
+ORD-78480,Lance Miller,Electronics,578.61,2024-12-15,Refunded
+ORD-51462,Shawn Bradford,Books,1155.21,2024-01-02,Refunded
+ORD-28148,Chad Mckinney,Beauty,1458.11,2024-04-11,Pending
+ORD-28809,Matthew Rodgers,Home & Kitchen,567.13,2024-09-07,Completed
+ORD-54303,Brandon Peters,Beauty,176.68,2024-02-10,Completed
+ORD-18227,Jared Rios,Beauty,1100.54,2024-03-25,Refunded
+ORD-96383,Mr. Steven Thomas,Home & Kitchen,796.23,2024-07-23,Refunded
+ORD-87133,Valerie Rubio,Electronics,662.77,2024-06-22,Completed
+ORD-39301,Erik Lucas,Electronics,886.58,2024-04-27,Completed
+ORD-51834,Lindsay Brooks,Books,1359.08,2024-04-19,Pending
+ORD-99737,William Callahan,Books,1087.8,2024-04-07,Completed
+ORD-65667,Kimberly Carter,Electronics,154.43,2024-12-10,Completed
+ORD-51333,Ryan Lee,Beauty,100.31,2024-08-17,Pending
+ORD-47317,Michelle Frank,Beauty,638.6,2024-02-20,Completed
+ORD-80132,Samuel Morgan,Books,981.7,2024-09-05,Failed
+ORD-60260,Cody Gordon,Books,328.48,2024-05-15,Failed
+ORD-87234,Robin Boyd,Clothing,435.02,2024-01-30,Completed
+ORD-00978,Terry Rodriguez,Beauty,1124.48,2024-03-21,Completed
+ORD-12191,Dr. Dawn Ashley MD,Clothing,1441.56,2024-07-25,Completed
+ORD-93990,Karen Downs,Beauty,1412.98,2024-02-11,Failed
+ORD-98543,Caitlin Moreno,Home & Kitchen,989.49,2024-05-02,Refunded
+ORD-47510,Christina Strong,Books,599.72,2024-11-14,Completed

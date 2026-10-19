@@ -1,0 +1,52 @@
+============================================================
+DATASET VALIDATION REPORT
+============================================================
+Domain: Online Shopping Order Management
+Total Records: 35
+Fields: order_id, customer_name, product_category, order_amount, order_date, payment_status
+
+------------------------------------------------------------
+1. MISSING / NULL VALUE CHECK
+------------------------------------------------------------
+  order_id               missing=0    [PASS]
+  customer_name          missing=0    [PASS]
+  product_category       missing=0    [PASS]
+  order_amount           missing=0    [PASS]
+  order_date             missing=0    [PASS]
+  payment_status         missing=0    [PASS]
+  TOTAL                  missing=0   
+
+------------------------------------------------------------
+2. DUPLICATE RECORD CHECK (order_id)
+------------------------------------------------------------
+  Total records:      35
+  Unique order_ids:   35
+  Duplicate count:    0
+  Status:             PASS
+
+------------------------------------------------------------
+3. DATA TYPE VERIFICATION
+------------------------------------------------------------
+  order_id               types=[str=35] errors=0    [PASS]
+  customer_name          types=[str=35] errors=0    [PASS]
+  product_category       types=[str=35] errors=0    [PASS]
+  order_amount           types=[float=35] errors=0    [PASS]
+  order_date             types=[str=35] errors=0    [PASS]
+  payment_status         types=[str=35] errors=0    [PASS]
+
+------------------------------------------------------------
+4. SCHEMA CONSISTENCY CHECK
+------------------------------------------------------------
+  order_id violations:      0
+  category violations:      0
+  amount violations:        0
+  date violations:          0
+  payment_status violations:0
+  Total issues:             0
+  Status:                   PASS
+
+------------------------------------------------------------
+5. OVERALL RESULT
+------------------------------------------------------------
+  Validation: PASSED
+============================================================
